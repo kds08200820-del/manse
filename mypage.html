@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>마이페이지 | 3·1운동 만세운동본부</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--primary:#1c69d4;--primary-active:#0653b6;--ink:#262626;--bodytext:#3c3c3c;--muted:#6b6b6b;
+      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f7f7f7;--dark:#1a2129;--error:#dc2626;}
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--surface-soft);color:var(--bodytext);font-weight:300;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .bar{position:sticky;top:0;background:var(--dark);height:44px;display:flex;align-items:center;z-index:20;}
+    .bar .in{max-width:1024px;margin:0 auto;width:100%;padding:0 22px;display:flex;align-items:center;justify-content:space-between;}
+    .bar .in > a{font-size:13px;font-weight:700;color:rgba(255,255,255,0.92);}
+    #authArea{font-size:12px;}
+    .wrap{max-width:560px;margin:0 auto;padding:56px 24px 80px;}
+    .card{background:var(--canvas);border:1px solid var(--hairline);padding:44px 36px;}
+    .title{margin:0;font-weight:700;font-size:32px;letter-spacing:0;color:var(--ink);}
+    .sub{margin:12px 0 28px;font-size:16px;color:var(--muted);}
+    .row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-top:1px solid var(--hairline);font-size:15px;}
+    .row .k{color:var(--muted);font-weight:700;}
+    .row .v{color:var(--ink);text-align:right;}
+    label{display:block;font-size:13px;font-weight:700;letter-spacing:0.3px;color:var(--ink);margin:16px 0 6px;}
+    input{width:100%;height:48px;padding:0 14px;border:1px solid var(--hairline-strong);background:#fff;
+      font-size:16px;font-family:inherit;font-weight:300;color:var(--ink);border-radius:0;}
+    input:focus{outline:none;border:2px solid var(--ink);}
+    .acWrap{position:relative;}
+    .ac-list{position:absolute;left:0;right:0;top:100%;z-index:10;background:#fff;border:1px solid var(--hairline-strong);
+      border-top:0;max-height:230px;overflow-y:auto;display:none;}
+    .ac-item{padding:11px 14px;font-size:14px;cursor:pointer;border-top:1px solid var(--hairline);}
+    .ac-item:first-child{border-top:0;}
+    .ac-item:hover{background:var(--surface-soft);}
+    .ac-item b{color:var(--ink);font-weight:700;}
+    .ac-item span{color:var(--muted);font-size:12px;margin-left:6px;}
+    .memberTag{display:none;margin-top:8px;font-size:13px;font-weight:700;padding:8px 12px;}
+    .memberTag.full{display:block;background:#eaf3ff;border:1px solid #b9d6ff;color:var(--primary);}
+    .memberTag.general{display:block;background:var(--surface-soft);border:1px solid var(--hairline-strong);color:var(--muted);}
+    .btn{width:100%;height:48px;border:0;border-radius:0;background:var(--primary);color:#fff;font-size:15px;
+      font-weight:700;letter-spacing:0.5px;cursor:pointer;margin-top:14px;font-family:inherit;transition:background .15s ease;}
+    .btn:hover{background:var(--primary-active);}
+    .btn:disabled{background:var(--hairline-strong);cursor:default;}
+    .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--hairline-strong);}
+    .btn.ghost:hover{background:var(--surface-soft);}
+    .err{display:none;margin-top:14px;padding:12px 14px;background:#fdecea;border:1px solid #f3c7c3;color:var(--error);font-size:14px;}
+    .home{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);}
+    .danger-link{display:block;text-align:center;margin-top:26px;font-size:13px;color:var(--muted);
+      text-decoration:underline;cursor:pointer;background:none;border:0;width:100%;font-family:inherit;font-weight:300;}
+    .danger-link:hover{color:var(--error);}
+    #content{display:none;}
+    #editMode{display:none;}
+    #loading{padding:80px 24px;text-align:center;color:var(--muted);font-size:15px;}
+  </style>
+</head>
+<body>
+  <header class="bar"><div class="in"><a href="index.html">3·1운동 만세운동본부</a><span id="authArea"></span></div></header>
+  <div id="loading">확인 중…</div>
+
+  <div class="wrap" id="content">
+    <div class="card">
+      <h1 class="title">마이페이지</h1>
+      <p class="sub">만세운동본부 홈페이지에 로그인하셨습니다. 환영합니다. 🙏</p>
+
+      <!-- 보기 모드 -->
+      <div id="viewMode">
+        <div class="row"><span class="k">이름</span><span class="v" id="pName">—</span></div>
+        <div class="row"><span class="k">교회</span><span class="v" id="pChurch">—</span></div>
+        <div class="row"><span class="k">회원 구분</span><span class="v" id="pType">—</span></div>
+        <div class="row"><span class="k">직책</span><span class="v" id="pRole">—</span></div>
+        <div class="row"><span class="k">전화번호</span><span class="v" id="pPhone">—</span></div>
+        <div class="row"><span class="k">주소</span><span class="v" id="pAddr">—</span></div>
+        <div class="row"><span class="k">이메일</span><span class="v" id="userEmail"></span></div>
+        <button class="btn" id="editBtn">정보 수정</button>
+        <button class="btn ghost" id="pwBtn">비밀번호 변경</button>
+        <button class="btn ghost" id="logout">로그아웃</button>
+        <button class="danger-link" id="deleteBtn">회원 탈퇴</button>
+      </div>
+
+      <!-- 수정 모드 -->
+      <div id="editMode">
+        <label for="eName">이름</label>
+        <input id="eName" type="text" placeholder="홍길동" />
+        <label for="eChurch">교회명 <span style="font-weight:400;color:var(--muted)">(검색)</span></label>
+        <div class="acWrap">
+          <input id="eChurch" type="text" placeholder="교회 이름을 입력하면 검색됩니다" autocomplete="off" />
+          <div class="ac-list" id="eChurchList"></div>
+        </div>
+        <div class="memberTag" id="eMemberTag"></div>
+        <label for="ePhone">전화번호</label>
+        <input id="ePhone" type="tel" placeholder="010-0000-0000" />
+        <label for="eAddr">주소</label>
+        <input id="eAddr" type="text" placeholder="예) 화성시 우정읍 ○○로 00" />
+        <div class="err" id="eErr"></div>
+        <button class="btn" id="saveBtn">저장</button>
+        <button class="btn ghost" id="cancelBtn">취소</button>
+      </div>
+
+      <!-- 비밀번호 변경 모드 -->
+      <div id="pwMode" style="display:none;">
+        <p class="sub" style="margin:0 0 6px;">새로 사용하실 비밀번호를 입력해 주세요.</p>
+        <label for="np1">새 비밀번호</label>
+        <input id="np1" type="password" autocomplete="new-password" placeholder="6자 이상" />
+        <label for="np2">새 비밀번호 확인</label>
+        <input id="np2" type="password" autocomplete="new-password" placeholder="한 번 더 입력" />
+        <div class="err" id="npErr"></div>
+        <div id="npOk" style="display:none;margin-top:14px;padding:12px 14px;background:#eaf6ee;border:1px solid #bfe3cb;color:#177245;font-size:14px;">비밀번호가 변경되었습니다. ✅</div>
+        <button class="btn" id="npSave">비밀번호 저장</button>
+        <button class="btn ghost" id="npCancel">취소</button>
+      </div>
+    </div>
+    <a class="home" href="index.html">← 홈으로 돌아가기</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=2"></script>
+  <script src="churches.js?v=2"></script>
+  <script src="auth.js?v=6"></script>
+  <script>
+    function norm(s){ return String(s || '').replace(/\s+/g, '').replace(/목사$/, ''); }
+    var CH = window.CHURCHES || [];
+    var meUser = null, meProfile = null;
+
+    function fill(p){
+      document.getElementById('pName').textContent = (p && p.name) || '—';
+      document.getElementById('pChurch').textContent = (p && p.church) || '—';
+      document.getElementById('pType').textContent = (p && p.member_type) || '—';
+      document.getElementById('pRole').textContent = (p && p.officer_role) || '— (일반 회원)';
+      document.getElementById('pPhone').textContent = (p && p.phone) || '—';
+      document.getElementById('pAddr').textContent = (p && p.address) || '—';
+    }
+
+    (async function () {
+      var user = await window.requireAuth();
+      if (!user) return;
+      meUser = user;
+      document.getElementById('userEmail').textContent = user.email || '';
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      document.getElementById('logout').addEventListener('click', async function () {
+        if (window.sb) { try { await window.sb.auth.signOut(); } catch (_) {} }
+        location.href = 'index.html';
+      });
+
+      // ----- 회원 탈퇴 -----
+      document.getElementById('deleteBtn').addEventListener('click', async function () {
+        if (!window.sb) return;
+        if (!confirm('정말 회원을 탈퇴하시겠습니까?\n\n탈퇴하면 회원 정보가 즉시 삭제되며 되돌릴 수 없습니다.')) return;
+        if (!confirm('마지막 확인입니다.\n\n탈퇴를 진행하려면 [확인]을 눌러 주세요.')) return;
+        var btn = this; btn.disabled = true; btn.textContent = '탈퇴 처리 중...';
+        try {
+          var r = await window.sb.rpc('delete_own_account');
+          if (r.error) {
+            alert('탈퇴 처리 중 오류가 발생했습니다: ' + r.error.message + '\n\n관리자에게 문의해 주세요.');
+            btn.disabled = false; btn.textContent = '회원 탈퇴'; return;
+          }
+          try { await window.sb.auth.signOut(); } catch (_) {}
+          alert('회원 탈퇴가 완료되었습니다. 그동안 함께해 주셔서 감사합니다. 🙏');
+          location.href = 'index.html';
+        } catch (ex) {
+          alert('탈퇴 처리 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+          btn.disabled = false; btn.textContent = '회원 탈퇴';
+        }
+      });
+      try {
+        if (typeof window.getMyProfile === 'function') { meProfile = await window.getMyProfile(); fill(meProfile); }
+      } catch (e) {}
+
+      // ----- 수정 모드 -----
+      var view = document.getElementById('viewMode'), edit = document.getElementById('editMode');
+      var eName = document.getElementById('eName'), eChurch = document.getElementById('eChurch');
+      var ePhone = document.getElementById('ePhone'), eAddr = document.getElementById('eAddr');
+      var eErr = document.getElementById('eErr'), tag = document.getElementById('eMemberTag');
+      var list = document.getElementById('eChurchList');
+
+      function updateTag(){
+        var nm = norm(eName.value);
+        var rec = CH.find(function(c){ return c.name === eChurch.value.trim(); });
+        tag.className = 'memberTag';
+        if(!nm || !eChurch.value.trim()){ tag.textContent=''; return; }
+        if(rec && norm(rec.pastor) === nm){ tag.textContent = '✓ 회원교회 담임목사로 확인됩니다 — 정회원'; tag.classList.add('full'); }
+        else { tag.textContent = '일반회원으로 저장됩니다.'; tag.classList.add('general'); }
+      }
+      function renderList(q){
+        q = q.trim(); list.innerHTML = '';
+        if(!q){ list.style.display='none'; return; }
+        var m = CH.filter(function(c){ return c.name.indexOf(q) >= 0; }).slice(0, 8);
+        if(!m.length){ list.style.display='none'; return; }
+        m.forEach(function(c){
+          var d = document.createElement('div'); d.className='ac-item';
+          d.innerHTML = '<b>'+c.name+'</b><span>'+c.region+' · '+c.pastor+' 목사</span>';
+          d.addEventListener('mousedown', function(ev){ ev.preventDefault(); eChurch.value=c.name; list.style.display='none'; updateTag(); });
+          list.appendChild(d);
+        });
+        list.style.display='block';
+      }
+      eChurch.addEventListener('input', function(){ renderList(eChurch.value); updateTag(); });
+      eChurch.addEventListener('focus', function(){ renderList(eChurch.value); });
+      eChurch.addEventListener('blur', function(){ setTimeout(function(){ list.style.display='none'; }, 150); });
+      eName.addEventListener('input', updateTag);
+
+      document.getElementById('editBtn').addEventListener('click', function(){
+        eName.value = (meProfile && meProfile.name) || '';
+        eChurch.value = (meProfile && meProfile.church) || '';
+        ePhone.value = (meProfile && meProfile.phone) || '';
+        eAddr.value = (meProfile && meProfile.address) || '';
+        eErr.style.display='none'; updateTag();
+        view.style.display='none'; edit.style.display='block';
+      });
+      document.getElementById('cancelBtn').addEventListener('click', function(){
+        edit.style.display='none'; view.style.display='block';
+      });
+      document.getElementById('saveBtn').addEventListener('click', async function(){
+        eErr.style.display='none';
+        var name = eName.value.trim(), church = eChurch.value.trim(), phone = ePhone.value.trim(), addr = eAddr.value.trim();
+        if(!name || !church){ eErr.textContent='이름과 교회명을 입력해 주세요.'; eErr.style.display='block'; return; }
+        if(!window.sb){ eErr.textContent='서버 연결이 준비되지 않았습니다.'; eErr.style.display='block'; return; }
+        var rec = CH.find(function(c){ return c.name === church; });
+        var memberType = (rec && norm(rec.pastor) === norm(name)) ? '정회원' : '일반회원';
+        var btn = document.getElementById('saveBtn'); btn.disabled=true; btn.textContent='저장 중...';
+        var up = await window.sb.from('profiles')
+          .update({ name: name, church: church, phone: phone, address: addr, member_type: memberType })
+          .eq('id', meUser.id);
+        btn.disabled=false; btn.textContent='저장';
+        if(up.error){ eErr.textContent='저장 실패: ' + up.error.message; eErr.style.display='block'; return; }
+        meProfile = meProfile || {};
+        meProfile.name=name; meProfile.church=church; meProfile.phone=phone; meProfile.address=addr; meProfile.member_type=memberType;
+        fill(meProfile);
+        edit.style.display='none'; view.style.display='block';
+      });
+
+      // ----- 비밀번호 변경 (로그인 상태에서 직접 변경) -----
+      var pwMode = document.getElementById('pwMode');
+      document.getElementById('pwBtn').addEventListener('click', function(){
+        document.getElementById('np1').value=''; document.getElementById('np2').value='';
+        document.getElementById('npErr').style.display='none'; document.getElementById('npOk').style.display='none';
+        var sv=document.getElementById('npSave'); sv.disabled=false; sv.textContent='비밀번호 저장';
+        view.style.display='none'; pwMode.style.display='block';
+      });
+      document.getElementById('npCancel').addEventListener('click', function(){ pwMode.style.display='none'; view.style.display='block'; });
+      document.getElementById('npSave').addEventListener('click', async function(){
+        var e=document.getElementById('npErr'); e.style.display='none';
+        var p1=document.getElementById('np1').value, p2=document.getElementById('np2').value;
+        if(p1.length<6){ e.textContent='비밀번호는 6자 이상이어야 합니다.'; e.style.display='block'; return; }
+        if(p1!==p2){ e.textContent='비밀번호가 일치하지 않습니다.'; e.style.display='block'; return; }
+        if(!window.sb){ e.textContent='서버 연결이 준비되지 않았습니다.'; e.style.display='block'; return; }
+        var b=this; b.disabled=true; b.textContent='변경 중…';
+        try{
+          var res=await window.sb.auth.updateUser({ password:p1 });
+          if(res.error){ b.disabled=false; b.textContent='비밀번호 저장'; e.textContent=(window.krErr?window.krErr(res.error.message):res.error.message); e.style.display='block'; return; }
+          document.getElementById('np1').value=''; document.getElementById('np2').value='';
+          document.getElementById('npOk').style.display='block'; b.textContent='완료';
+          setTimeout(function(){ pwMode.style.display='none'; view.style.display='block'; }, 1600);
+        }catch(ex){ b.disabled=false; b.textContent='비밀번호 저장'; e.textContent=(window.krErr?window.krErr(ex&&ex.message):(ex&&ex.message))||'변경에 실패했습니다.'; e.style.display='block'; }
+      });
+    })();
+  </script>
+</body>
+</html>

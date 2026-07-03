@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>로그인 | 3·1운동 만세운동본부</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--primary:#1c69d4;--primary-active:#0653b6;--ink:#262626;--bodytext:#3c3c3c;--muted:#6b6b6b;
+      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f7f7f7;--dark:#1a2129;--error:#dc2626;}
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--surface-soft);color:var(--bodytext);font-weight:300;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+      -webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .bar{position:sticky;top:0;background:var(--dark);height:44px;display:flex;align-items:center;}
+    .bar .in{max-width:1024px;margin:0 auto;width:100%;padding:0 22px;display:flex;align-items:center;justify-content:space-between;}
+    .bar .in > a{font-size:13px;font-weight:700;color:rgba(255,255,255,0.92);}
+    #authArea{font-size:12px;}
+    .wrap{max-width:430px;margin:0 auto;padding:56px 24px 80px;}
+    .card{background:var(--canvas);border:1px solid var(--hairline);padding:44px 34px;}
+    .logo{height:42px;width:auto;display:block;margin:0 auto 22px;}
+    .title{margin:0;font-weight:700;font-size:28px;letter-spacing:0;color:var(--ink);text-align:center;}
+    .sub{margin:8px 0 30px;font-size:15px;color:var(--muted);text-align:center;}
+    label{display:block;font-size:13px;font-weight:700;letter-spacing:0.3px;color:var(--ink);margin:18px 0 6px;}
+    input{width:100%;height:48px;padding:0 14px;border:1px solid var(--hairline-strong);background:#fff;
+      font-size:16px;font-family:inherit;font-weight:300;color:var(--ink);border-radius:0;}
+    input:focus{outline:none;border:2px solid var(--ink);}
+    .btn{width:100%;height:48px;border:0;border-radius:0;background:var(--primary);color:#fff;font-size:15px;
+      font-weight:700;letter-spacing:0.5px;cursor:pointer;margin-top:26px;font-family:inherit;transition:background .15s ease;}
+    .btn:hover{background:var(--primary-active);}
+    .btn:disabled{background:var(--hairline-strong);cursor:default;}
+    .remember{display:flex;align-items:center;gap:9px;margin-top:16px;font-size:14px;font-weight:400;color:var(--bodytext);cursor:pointer;letter-spacing:0;}
+    .remember input{width:18px;height:18px;flex:0 0 18px;margin:0;accent-color:var(--primary);cursor:pointer;}
+    .err{display:none;margin-top:18px;padding:12px 14px;background:#fdecea;border:1px solid #f3c7c3;color:var(--error);font-size:14px;line-height:1.5;}
+    .foot{text-align:center;margin-top:24px;font-size:14px;color:var(--muted);}
+    .foot a{color:var(--primary);font-weight:700;}
+    .home{display:block;text-align:center;margin-top:20px;font-size:13px;color:var(--muted);}
+  </style>
+</head>
+<body>
+  <header class="bar"><div class="in"><a href="index.html">3·1운동 만세운동본부</a><span id="authArea"></span></div></header>
+  <div class="wrap">
+    <div class="card">
+      <img class="logo" src="assets/logo-trans.png?v=2" alt="만세운동본부" />
+      <h1 class="title">로그인</h1>
+      <p class="sub">만세운동본부 회원 로그인</p>
+      <form id="loginForm" novalidate>
+        <label for="email">이메일</label>
+        <input id="email" type="email" required autocomplete="email" placeholder="you@example.com" />
+        <label for="pw">비밀번호</label>
+        <input id="pw" type="password" required autocomplete="current-password" placeholder="비밀번호" />
+        <label class="remember"><input type="checkbox" id="remember" checked /> <span>로그인 정보 저장 <span style="color:var(--muted);font-weight:400">(다음부터 자동 로그인)</span></span></label>
+        <div class="err" id="err"></div>
+        <button class="btn" type="submit">로그인</button>
+      </form>
+      <div class="foot">계정이 없으신가요? <a href="signup.html">회원가입</a> &nbsp;·&nbsp; <a href="#" id="forgotLink">비밀번호 찾기</a></div>
+
+      <div id="forgotBox" style="display:none;margin-top:22px;padding-top:22px;border-top:1px solid var(--hairline);">
+        <p class="sub" style="margin:0 0 6px;text-align:left;">가입하신 이메일로 <b>비밀번호 재설정 링크</b>를 보내드립니다.</p>
+        <label for="fpEmail">이메일</label>
+        <input id="fpEmail" type="email" autocomplete="email" placeholder="you@example.com" />
+        <div class="err" id="fpMsg"></div>
+        <button class="btn" type="button" id="fpSend">재설정 메일 보내기</button>
+      </div>
+    </div>
+    <a class="home" href="index.html">← 홈으로 돌아가기</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=2"></script>
+  <script src="auth.js?v=6"></script>
+  <script>
+    var f = document.getElementById('loginForm');
+    var err = document.getElementById('err');
+    var rememberBox = document.getElementById('remember');
+    function showErr(m){ err.textContent = m; err.style.display = 'block'; }
+
+    // 저장해 둔 이메일/설정 불러오기 (편의)
+    try {
+      var savedEmail = localStorage.getItem('sam_email');
+      if (savedEmail) document.getElementById('email').value = savedEmail;
+      rememberBox.checked = (localStorage.getItem('sam_remember') !== '0');
+    } catch (_) {}
+
+    f.addEventListener('submit', async function (e) {
+      e.preventDefault(); err.style.display = 'none';
+      if (!window.sb) { showErr('로그인 설정이 아직 완료되지 않았습니다. (관리자: Supabase Anon Key 입력 필요)'); return; }
+      var email = document.getElementById('email').value.trim();
+      // 로그인 정보 저장 여부 반영 (세션 저장 위치 + 이메일 기억)
+      if (window.setRemember) window.setRemember(rememberBox.checked);
+      try {
+        if (rememberBox.checked) localStorage.setItem('sam_email', email);
+        else localStorage.removeItem('sam_email');
+      } catch (_) {}
+      var btn = f.querySelector('.btn'); btn.disabled = true; btn.textContent = '로그인 중...';
+      try {
+        var res = await window.sb.auth.signInWithPassword({
+          email: email,
+          password: document.getElementById('pw').value
+        });
+        if (res.error) { showErr(window.krErr(res.error.message)); }
+        else { location.href = 'index.html'; return; }
+      } catch (ex) { showErr(window.krErr(ex && ex.message)); }
+      btn.disabled = false; btn.textContent = '로그인';
+    });
+
+    // ----- 비밀번호 찾기(재설정 메일) -----
+    var forgotLink = document.getElementById('forgotLink');
+    var forgotBox = document.getElementById('forgotBox');
+    var fpMsg = document.getElementById('fpMsg');
+    forgotLink.addEventListener('click', function(e){
+      e.preventDefault();
+      var open = forgotBox.style.display === 'none';
+      forgotBox.style.display = open ? 'block' : 'none';
+      if (open) {
+        var em = document.getElementById('email').value.trim();
+        if (em) document.getElementById('fpEmail').value = em;
+        document.getElementById('fpEmail').focus();
+      }
+    });
+    function fpShow(msg, ok){ fpMsg.textContent = msg; fpMsg.style.display='block';
+      fpMsg.style.background = ok ? '#eaf6ee' : '#fdecea'; fpMsg.style.borderColor = ok ? '#bfe3cb' : '#f3c7c3'; fpMsg.style.color = ok ? '#177245' : 'var(--error)'; }
+    document.getElementById('fpSend').addEventListener('click', async function(){
+      if (!window.sb) { fpShow('로그인 설정이 아직 완료되지 않았습니다.', false); return; }
+      var em = document.getElementById('fpEmail').value.trim();
+      if (!em || em.indexOf('@') < 0) { fpShow('가입하신 이메일을 정확히 입력해 주세요.', false); return; }
+      var b = this; b.disabled = true; b.textContent = '보내는 중…';
+      try {
+        var redirectTo = new URL('reset-password.html', location.href).href;
+        var res = await window.sb.auth.resetPasswordForEmail(em, { redirectTo: redirectTo });
+        if (res.error) { fpShow((window.krErr ? window.krErr(res.error.message) : res.error.message), false); }
+        else { fpShow('재설정 메일을 보냈습니다. 메일함(스팸함 포함)을 확인해, 링크를 눌러 새 비밀번호를 설정해 주세요.', true); }
+      } catch (ex) { fpShow((window.krErr?window.krErr(ex&&ex.message):(ex&&ex.message))||'메일 발송에 실패했습니다.', false); }
+      b.disabled = false; b.textContent = '재설정 메일 보내기';
+    });
+  </script>
+</body>
+</html>

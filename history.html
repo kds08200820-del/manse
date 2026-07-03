@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>만세운동본부이 걸어온 길 | 3·1운동 만세운동본부</title>
+  <meta name="description" content="3·1운동만세운동본부(만세운동본부)가 걸어온 길 — 3·1 만세운동의 뿌리에서 오늘까지의 역사 기록." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{--primary:#1c69d4;--blue:#1c69d4;--primary-active:#0653b6;--ink:#1a1a1a;--bodytext:#3c3c3c;--muted:#6b6b6b;
+      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f6f7f9;--parchment:#f3f1ea;--dark:#1a2129;--on-dark:#e8ebef;--on-dark-soft:#a7b0bd;}
+    *{box-sizing:border-box;}
+    body{margin:0;background:var(--canvas);color:var(--bodytext);font-weight:300;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .bar{position:sticky;top:0;background:var(--dark);height:44px;display:flex;align-items:center;z-index:30;}
+    .bar .in{max-width:1080px;margin:0 auto;width:100%;padding:0 22px;display:flex;align-items:center;justify-content:space-between;}
+    .bar .in > a{font-size:13px;font-weight:700;color:rgba(255,255,255,0.92);}
+    #authArea{font-size:12px;}
+    /* 히어로 */
+    .hero{background:linear-gradient(180deg,var(--parchment),#fff);padding:76px 24px 60px;text-align:center;border-bottom:1px solid var(--hairline);}
+    .hero .kicker{font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--primary);}
+    .hero h1{margin:16px 0 0;font-size:52px;line-height:1.08;font-weight:700;letter-spacing:-0.5px;color:var(--ink);}
+    .hero p{margin:20px auto 0;max-width:640px;font-size:19px;line-height:1.6;font-weight:300;color:var(--bodytext);}
+    .stats{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin:44px auto 0;max-width:760px;border:1px solid var(--hairline);background:#fff;}
+    .stat{flex:1;min-width:140px;padding:24px 16px;border-left:1px solid var(--hairline);}
+    .stat:first-child{border-left:0;}
+    .stat b{display:block;font-size:34px;font-weight:700;color:var(--primary);letter-spacing:-0.5px;}
+    .stat span{display:block;margin-top:4px;font-size:13px;color:var(--muted);font-weight:400;}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+    .section{padding:72px 0;}
+    .sec-h2{margin:0 0 8px;font-size:32px;font-weight:700;letter-spacing:-0.5px;color:var(--ink);text-align:center;}
+    .sec-sub{margin:0 auto 48px;font-size:16px;color:var(--muted);text-align:center;max-width:600px;line-height:1.6;}
+    /* 타임라인 */
+    .tl{position:relative;max-width:900px;margin:0 auto;}
+    .tl::before{content:'';position:absolute;left:50%;top:6px;bottom:6px;width:2px;background:var(--hairline);transform:translateX(-50%);}
+    .ev{position:relative;width:50%;padding:0 44px 40px;}
+    .ev:nth-child(odd){left:0;text-align:right;}
+    .ev:nth-child(even){left:50%;text-align:left;}
+    .ev .dot{position:absolute;top:4px;width:15px;height:15px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 0 0 1px var(--hairline-strong);}
+    .ev:nth-child(odd) .dot{right:-8px;}
+    .ev:nth-child(even) .dot{left:-8px;}
+    .ev .yr{font-size:13px;font-weight:700;letter-spacing:1.5px;color:var(--primary);}
+    .ev h3{margin:7px 0 8px;font-size:21px;font-weight:700;letter-spacing:-0.3px;color:var(--ink);line-height:1.3;}
+    .ev p{margin:0;font-size:15px;line-height:1.65;color:var(--muted);font-weight:300;}
+    .ev.big h3{color:var(--primary);}
+    /* 정기 행사 */
+    .events{background:var(--surface-soft);}
+    .egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto;}
+    .ecard{background:#fff;border:1px solid var(--hairline);padding:24px 22px;}
+    .ecard .em{font-size:26px;}
+    .ecard h4{margin:12px 0 6px;font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-0.3px;}
+    .ecard p{margin:0;font-size:14px;line-height:1.55;color:var(--muted);}
+    /* 증경회장단 */
+    .presidents{background:var(--dark);color:var(--on-dark);text-align:center;}
+    .presidents .sec-h2{color:#fff;}
+    .presidents .sec-sub{color:var(--on-dark-soft);}
+    .pp{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;max-width:820px;margin:0 auto;}
+    .pp .p{border:1px solid rgba(255,255,255,0.18);padding:18px 26px;font-size:17px;font-weight:700;color:#fff;background:rgba(255,255,255,0.04);}
+    /* 닫기 */
+    .closing{text-align:center;padding:72px 24px 90px;}
+    .closing h2{margin:0 0 14px;font-size:28px;font-weight:700;color:var(--ink);letter-spacing:-0.5px;}
+    .closing p{margin:0 auto;max-width:560px;font-size:17px;line-height:1.7;color:var(--bodytext);}
+    .verse{margin:26px auto 0;font-size:15px;color:var(--muted);font-style:italic;}
+    .home{display:inline-block;margin-top:34px;font-size:14px;color:var(--primary);font-weight:700;}
+    .note{max-width:900px;margin:0 auto;padding:14px 18px;background:var(--parchment);border:1px solid var(--hairline);font-size:13px;color:var(--muted);line-height:1.6;text-align:center;}
+    @media (max-width:720px){
+      .hero h1{font-size:38px;}
+      .tl::before{left:9px;}
+      .ev{width:100%;left:0 !important;text-align:left !important;padding:0 0 34px 34px;}
+      .ev .dot{left:2px !important;right:auto !important;}
+      .egrid{grid-template-columns:1fr;}
+    }
+    /* 감성 · 관리자 편집 */
+    .opening{background:#fff;padding:60px 24px 4px;text-align:center;}
+    .opening .lead{max-width:660px;margin:0 auto;font-size:20px;line-height:1.95;color:var(--ink);font-weight:300;}
+    .opening .lead b{font-weight:700;color:var(--primary);}
+    .quote{background:var(--parchment);padding:66px 24px;text-align:center;}
+    .quote p{max-width:720px;margin:0 auto;font-size:23px;line-height:1.7;font-weight:300;color:var(--ink);font-style:italic;}
+    .quote span{display:block;margin-top:18px;font-size:13px;color:var(--muted);font-style:normal;font-weight:700;letter-spacing:1.5px;}
+    .ev .adm{margin-top:10px;display:flex;gap:8px;}
+    .ev:nth-child(odd) .adm{justify-content:flex-end;}
+    @media (max-width:720px){ .ev:nth-child(odd) .adm{justify-content:flex-start;} }
+    .admBtn{border:1px solid var(--hairline-strong);background:#fff;font-size:12px;font-weight:700;color:var(--muted);padding:4px 10px;cursor:pointer;font-family:inherit;}
+    .admBtn:hover{color:var(--primary);border-color:var(--primary);}
+    .addWrap{text-align:center;margin:6px 0 30px;}
+    .addBtn{border:1px dashed var(--primary);background:#eef5ff;color:var(--primary);font-size:14px;font-weight:700;padding:11px 22px;cursor:pointer;font-family:inherit;}
+    .hov{position:fixed;inset:0;background:rgba(20,24,30,0.55);z-index:60;display:none;overflow-y:auto;padding:40px 16px;}
+    .hov.on{display:block;}
+    .hmdl{max-width:520px;margin:0 auto;background:#fff;padding:28px 26px;}
+    .hmdl h3{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--ink);}
+    .hmdl label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:14px 0 5px;}
+    .hmdl input,.hmdl textarea{width:100%;padding:11px 13px;border:1px solid var(--hairline-strong);font-size:15px;font-family:inherit;font-weight:300;border-radius:0;color:var(--ink);box-sizing:border-box;}
+    .hmdl textarea{min-height:120px;resize:vertical;line-height:1.7;}
+    .hmdl input:focus,.hmdl textarea:focus{outline:none;border:2px solid var(--ink);}
+    .hmdl .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .hmdl .chk{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;font-weight:400;color:var(--bodytext);cursor:pointer;}
+    .hmdl .chk input{width:18px;height:18px;accent-color:var(--primary);}
+    .hAct{display:flex;gap:10px;justify-content:flex-end;margin-top:22px;}
+    .hAct button{height:42px;padding:0 20px;border:0;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+    .hAct .save{background:var(--primary);color:#fff;}
+    .hAct .cancel{background:#fff;color:var(--ink);border:1px solid var(--hairline-strong);}
+    .hErr{display:none;margin-top:12px;padding:10px 12px;background:#fdecea;border:1px solid #f3c7c3;color:#dc2626;font-size:13px;}
+  </style>
+</head>
+<body>
+  <header class="bar"><div class="in"><a href="index.html">3·1운동 만세운동본부</a><span id="authArea"></span></div></header>
+
+  <section class="hero">
+    <div class="kicker">만세운동본부이 걸어온 길</div>
+    <h1>한 형제처럼, 한 마음으로<br>걸어온 발자취</h1>
+    <p>3·1 만세운동의 뿌리 위에서, 우정읍·장안면의 교회들이 교파를 넘어 한 형제로 모여 걸어온 3·1운동만세운동본부의 역사입니다.</p>
+    <div class="stats">
+      <div class="stat"><b>1919</b><span>3·1운동의 뿌리</span></div>
+      <div class="stat"><b>12</b><span>교단</span></div>
+      <div class="stat"><b>49</b><span>회원 교회</span></div>
+    </div>
+  </section>
+
+  <!-- 여는 글 -->
+  <section class="opening">
+    <p class="lead">화려한 건물도, 큰 행사도 아니었습니다.<br>작은 교회와 큰 교회가 <b>한 식탁에 둘러앉아</b> 손을 맞잡고,<br>교파의 담을 넘어 <b>한 형제</b>로 함께 기도해 온 시간 —<br>그 걸음 하나하나가 삼괴지역 복음의 통로가 되었습니다.</p>
+  </section>
+
+  <!-- 타임라인 (관리자 편집 가능) -->
+  <section class="section wrap">
+    <h2 class="sec-h2">우리가 걸어온 길</h2>
+    <p class="sec-sub">만세운동본부이 보관해 온 역사 기록을 따라, 함께 걸어온 발자취를 되짚습니다.</p>
+    <div class="tl" id="timeline"><div style="text-align:center;color:var(--muted);padding:20px;">불러오는 중…</div></div>
+    <div class="addWrap" id="addWrap" style="display:none;"><button class="addBtn" id="histAdd">＋ 연혁 항목 추가</button></div>
+    <div class="note">※ 연혁은 만세운동본부이 보관해 온 회의록·순서지·보고서 등 실제 역사 기록을 바탕으로 정리했으며, 관리자가 언제든 이야기를 더할 수 있습니다.</div>
+  </section>
+
+  <!-- 감성 인용 -->
+  <section class="quote">
+    <p>"한 사람의 열 걸음보다, 열 사람의 한 걸음으로 —<br>우리는 함께이기에 여기까지 걸어올 수 있었습니다."</p>
+    <span>3·1운동 만세운동본부</span>
+  </section>
+
+  <!-- 정기 연합 행사 -->
+  <section class="section events">
+    <div class="wrap">
+      <h2 class="sec-h2">해마다 함께한 자리</h2>
+      <p class="sec-sub">만세운동본부이 매년 이어온 정기 연합 사역입니다.</p>
+      <div class="egrid">
+        <div class="ecard"><div class="em">🙏</div><h4>월례 조찬기도회</h4><p>매월 회원교회를 순회하며 지역과 한국교회를 위해 기도합니다.</p></div>
+        <div class="ecard"><div class="em">🕊️</div><h4>3·1절 기념 연합예배</h4><p>3·1 만세운동의 정신을 기리며 나라와 민족을 위해 함께 예배합니다.</p></div>
+        <div class="ecard"><div class="em">✝️</div><h4>부활절 연합예배</h4><p>지역 교회가 한자리에 모여 그리스도의 부활을 함께 기념합니다.</p></div>
+        <div class="ecard"><div class="em">🇰🇷</div><h4>8·15 광복절 연합예배</h4><p>광복의 은혜를 기억하며 나라를 위한 감사의 예배를 드립니다.</p></div>
+        <div class="ecard"><div class="em">🎗️</div><h4>6·25 상기 연합예배</h4><p>민족의 아픔을 기억하고 평화와 통일을 위해 기도합니다.</p></div>
+        <div class="ecard"><div class="em">🎵</div><h4>신년축복성회 · 신년하례</h4><p>새해를 열며 함께 예배하고 한 해의 사역을 준비합니다.</p></div>
+        <div class="ecard"><div class="em">🌿</div><h4>목회자 부부 야유회</h4><p>목회자 부부가 함께 모여 쉼과 교제의 시간을 나눕니다.</p></div>
+        <div class="ecard"><div class="em">👟</div><h4>3·1 만세길 걷기대회</h4><p>화성시·교계·시민과 함께 만세운동의 발자취를 걷습니다.</p></div>
+        <div class="ecard"><div class="em">🎓</div><h4>장학사업</h4><p>지역의 다음 세대를 격려하며 장학금을 지원합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 증경회장단 -->
+  <section class="section presidents">
+    <div class="wrap">
+      <h2 class="sec-h2">연합회를 이끌어 오신 분들</h2>
+      <p class="sec-sub">만세운동본부을 섬겨 오신 증경회장단께 감사드립니다.</p>
+      <div class="pp">
+        <div class="p">김충현 목사</div>
+        <div class="p">이명식 목사</div>
+        <div class="p">최현재 목사</div>
+        <div class="p">류성원 목사</div>
+        <div class="p">김동천 목사</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 닫기 -->
+  <section class="closing">
+    <h2>걸어온 길 위에, 함께 걸어갈 길</h2>
+    <p>작은 교회와 큰 교회가 한 식탁에 둘러앉아 손을 맞잡는 자리 — 그 자리가 곧 삼괴지역 복음의 통로였습니다. 지나온 발자취를 기억하며, 다음 세대와 함께 걸어갈 길을 준비합니다.</p>
+    <p class="verse">"보라 형제가 연합하여 동거함이 어찌 그리 선하고 아름다운고" — 시편 133 : 1</p>
+    <a class="home" href="index.html">← 홈으로 돌아가기</a>
+  </section>
+
+  <!-- 연혁 추가/수정 모달 (관리자) -->
+  <div class="hov" id="histOv">
+    <div class="hmdl">
+      <h3 id="hTitle">연혁 항목</h3>
+      <div class="row2">
+        <div><label>연도 / 라벨</label><input id="hBadge" type="text" placeholder="예: 2010, 오랜 뿌리" /></div>
+        <div><label>정렬 순서</label><input id="hSort" type="number" placeholder="10, 20, 30 …" /></div>
+      </div>
+      <label>제목</label>
+      <input id="hHead" type="text" placeholder="예: 절기마다, 한자리에" />
+      <label>내용</label>
+      <textarea id="hBody" placeholder="이 시기의 이야기를 담아 주세요."></textarea>
+      <label class="chk"><input type="checkbox" id="hBig" /> 강조 표시 (제목을 진하게)</label>
+      <div class="hErr" id="hErr"></div>
+      <div class="hAct">
+        <button class="cancel" id="hCancel">취소</button>
+        <button class="save" id="hSaveBtn">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js?v=3"></script>
+  <script src="auth.js?v=6"></script>
+  <script>
+  (function(){
+    var DEFAULTS = [
+      {badge:'1919', title:'3·1 만세운동의 뿌리', body:'우정읍·장안면 화수리에서 일어난 3·1 만세운동. 그 함성과 헌신은, 오늘 삼괴지역 교회가 기억하고 이어가는 신앙과 나라 사랑의 뿌리가 되었습니다.', big:true},
+      {badge:'오랜 뿌리', title:'교파를 넘어 한 형제로', body:'삼괴지역에서 교회를 섬기는 목회자들이 교단의 담을 넘어 손을 맞잡았습니다. 2009년에 이미 열 분의 증경회장을 모실 만큼, 오랜 세월 함께 걸어온 공동체입니다.'},
+      {badge:'2009', title:'정기총회 · 회칙 정비', body:'정기총회에서 회칙을 개정하고 협동총무 등 조직을 정비하며, 함께 걷는 연합 사역의 틀을 새롭게 다졌습니다.'},
+      {badge:'2010', title:'절기마다, 한자리에', body:'신년축복성회와 3·1절 기념 연합기도회, 부활절 연합예배로 지역 교회가 절기마다 한자리에 모이는 자리가 자리 잡았습니다.'},
+      {badge:'2011', title:'나라를 위한 무릎', body:'6·25 상기와 8·15 광복절 기념 연합기도회로 나라를 위해 무릎 꿇었고, 봄·가을 목회자 단합대회로 서로의 어깨를 겯었습니다.'},
+      {badge:'2012', title:'지역민과 함께한 은혜', body:'지역민을 초청한 신년축복성회에 300여 명이 함께 모여, 교회의 담을 넘어 지역과 마음을 나누는 연합회로 나아갔습니다.'},
+      {badge:'2013', title:'부활의 아침, 함께', body:'지역 기관과 함께 드린 부활주일 연합예배로 그리스도의 부활을 기념하고, 한 해의 사역을 정기총회로 정리했습니다.'},
+      {badge:'2014', title:'투명한 손길', body:'연간 결산과 재정 감사를 정착시켜, 작은 헌금 하나까지 회원 교회 앞에 책임 있고 투명하게 섬겼습니다.'},
+      {badge:'2016', title:'다음 세대를 심다', body:'지역의 학생들에게 장학금과 장학증서를 전하며, 오늘의 섬김이 내일의 열매가 되도록 다음 세대를 함께 세웠습니다.'},
+      {badge:'2018', title:'쉼 없이 이어진 걸음', body:'신년 조찬기도회, 부활절 연합예배(헌금으로 이웃 섬김), 목회자 부부 수양회, 8·15 광복절 연합예배와 정기총회로 한 해를 가득 채웠습니다.'},
+      {badge:'2021', title:'회칙을 다시 다듬다', body:'정기총회에서 회칙을 개정하며 조직을 새롭게 정비했습니다. 오랜 「총무·서기·회계」 체제에서 「사무총장」 체제로 나아가는 기틀을 놓아, 연합 사역을 한층 든든하게 세웠습니다.'},
+      {badge:'2024', title:'3·1 만세길을 다시 걷다', body:'우정·장안에서 일어난 3·1 만세운동의 정신을 잇는 「3·1 만세길 걷기대회」를 시작했습니다. 지역의 역사와 신앙, 시민의 발걸음이 하나로 이어진, 만세운동본부의 간판 사업이 태어났습니다.', big:true},
+      {badge:'2025', title:'함께 걷고, 함께 쉬다', body:'만세길 걷기대회를 본격적으로 준비하며 지역 기관과 손을 맞잡았고, 목회자 부부가 함께하는 야유회로 서로를 돌보았습니다. 부활절 연합예배와 임원회의 섬김도 쉼 없이 이어졌습니다.'},
+      {badge:'2026', title:'오늘, 그리고 내일', body:'조암감리교회에서 드린 부활절 연합예배, 시흥갯골로 떠난 목회자 부부 야유회, 그리고 제9회 지방선거를 앞두고 삼괴지역 6대 현안을 담아 후보자들에게 전한 정책 질의·제언까지 — 공식 홈페이지·앱을 열어, 지나온 길을 기억하며 다음 세대와 함께 걸어갈 길을 준비합니다.', big:true}
+    ];
+    var EVENTS = [], isAdmin = false, me = null, editingIndex = -1, usingDefaults = false;
+    function seedRow(e, i){ return { badge:(e.badge||null), title:e.title, body:(e.body||null), big:!!e.big, sort:(i+1)*10 }; }
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]);}); }
+
+    // 연혁 배지에서 연도(4자리) 추출 — 없으면 맨 앞(오래된 것)으로
+    function evYear(e){ var m=String(e && e.badge!=null ? e.badge : '').match(/(1[89]\d\d|20\d\d)/); return m?parseInt(m[1],10):-1; }
+    function render(){
+      var tl = document.getElementById('timeline');
+      // 연도 기준 자동 정렬(같은 연도는 sort 값으로 정렬)
+      EVENTS.sort(function(a,b){ var ya=evYear(a), yb=evYear(b); if(ya!==yb) return ya-yb; return (a.sort!=null?a.sort:0)-(b.sort!=null?b.sort:0); });
+      if(!EVENTS.length){ tl.innerHTML = '<div style="text-align:center;color:var(--muted);padding:20px;">아직 등록된 연혁이 없습니다.</div>'; return; }
+      tl.innerHTML = EVENTS.map(function(e, i){
+        var adm = isAdmin ? '<div class="adm"><button class="admBtn hEdit" data-idx="'+i+'">수정</button><button class="admBtn hDel" data-idx="'+i+'">삭제</button></div>' : '';
+        return '<div class="ev'+(e.big?' big':'')+'"><span class="dot"></span><div class="yr">'+esc(e.badge)+'</div><h3>'+esc(e.title)+'</h3>'+
+          (e.body?'<p>'+esc(e.body)+'</p>':'')+adm+'</div>';
+      }).join('');
+    }
+
+    function openModal(ev, idx){
+      editingIndex = (idx==null ? -1 : idx);
+      document.getElementById('hTitle').textContent = ev ? '연혁 수정' : '연혁 항목 추가';
+      document.getElementById('hBadge').value = ev ? (ev.badge||'') : '';
+      document.getElementById('hHead').value = ev ? (ev.title||'') : '';
+      document.getElementById('hBody').value = ev ? (ev.body||'') : '';
+      document.getElementById('hBig').checked = ev ? !!ev.big : false;
+      document.getElementById('hSort').value = ev ? (ev.sort!=null?ev.sort:'') : ((EVENTS.length+1)*10);
+      document.getElementById('hErr').style.display='none';
+      document.getElementById('histOv').classList.add('on');
+    }
+    function closeModal(){ document.getElementById('histOv').classList.remove('on'); editingIndex=-1; }
+
+    async function reload(){
+      var r = await window.sb.from('history_events').select('*').order('sort',{ascending:true});
+      if(!r.error && r.data && r.data.length){ EVENTS = r.data; usingDefaults=false; }
+      else { EVENTS = DEFAULTS.slice(); usingDefaults=true; }
+      render();
+    }
+    async function saveEvent(){
+      var err = document.getElementById('hErr');
+      var title = document.getElementById('hHead').value.trim();
+      if(!title){ err.textContent='제목을 입력해 주세요.'; err.style.display='block'; return; }
+      var payload = {
+        badge: document.getElementById('hBadge').value.trim() || null,
+        title: title,
+        body: document.getElementById('hBody').value.trim() || null,
+        big: document.getElementById('hBig').checked,
+        sort: parseInt(document.getElementById('hSort').value,10) || 0
+      };
+      var btn = document.getElementById('hSaveBtn'); btn.disabled=true;
+      try{
+        if(usingDefaults){
+          // 기본 연혁을 처음 편집/추가 → 현재 목록 전체를 DB에 저장(편집 반영). 이후부터는 개별 관리.
+          var rows = EVENTS.map(function(e,i){ var r=seedRow(e,i);
+            if(i===editingIndex){ r.badge=payload.badge; r.title=payload.title; r.body=payload.body; r.big=payload.big; r.sort=payload.sort; } return r; });
+          if(editingIndex<0){ rows.push({ badge:payload.badge, title:payload.title, body:payload.body, big:payload.big, sort:payload.sort }); }
+          var ins = await window.sb.from('history_events').insert(rows); if(ins.error) throw ins.error;
+        } else if(editingIndex>=0 && EVENTS[editingIndex] && EVENTS[editingIndex].id){
+          var up = await window.sb.from('history_events').update(payload).eq('id', EVENTS[editingIndex].id); if(up.error) throw up.error;
+        } else {
+          var ins2 = await window.sb.from('history_events').insert(payload); if(ins2.error) throw ins2.error;
+        }
+        btn.disabled=false; closeModal(); await reload();
+      }catch(e){ btn.disabled=false; err.textContent='저장 실패: '+(e.message||e)+' (관리자: history-setup.sql 실행이 필요할 수 있습니다.)'; err.style.display='block'; }
+    }
+    async function delEvent(index){
+      if(!confirm('이 연혁 항목을 삭제할까요?')) return;
+      try{
+        if(usingDefaults){
+          var rows = EVENTS.filter(function(_,i){ return i!==index; }).map(function(e,i){ return seedRow(e,i); });
+          if(rows.length){ var ins=await window.sb.from('history_events').insert(rows); if(ins.error) throw ins.error; }
+        } else {
+          var ev = EVENTS[index]; if(!ev || !ev.id){ await reload(); return; }
+          var d = await window.sb.from('history_events').delete().eq('id', ev.id); if(d.error) throw d.error;
+        }
+        await reload();
+      }catch(e){ alert('삭제 실패: '+(e.message||e)+'\n(관리자: history-setup.sql 실행이 필요할 수 있습니다.)'); }
+    }
+
+    (async function(){
+      try{
+        if(window.sb){
+          var s = await window.sb.auth.getSession();
+          me = s.data && s.data.session ? s.data.session.user : null;
+          if(me && typeof window.getMyProfile==='function'){ var p = await window.getMyProfile(); isAdmin = window.isAdmin ? window.isAdmin(me, p) : false; }
+          var r = await window.sb.from('history_events').select('*').order('sort',{ascending:true});
+          if(!r.error && r.data && r.data.length){ EVENTS = r.data; usingDefaults=false; }
+          else { EVENTS = DEFAULTS.slice(); usingDefaults=true; }
+        } else { EVENTS = DEFAULTS.slice(); usingDefaults=true; }
+      }catch(e){ EVENTS = DEFAULTS.slice(); usingDefaults=true; }
+      render();
+
+      if(isAdmin){
+        document.getElementById('addWrap').style.display='block';
+        document.getElementById('histAdd').addEventListener('click', function(){ openModal(null); });
+        document.getElementById('timeline').addEventListener('click', function(e){
+          var ed = e.target.closest && e.target.closest('.hEdit');
+          if(ed){ var i=parseInt(ed.getAttribute('data-idx'),10); if(EVENTS[i]) openModal(EVENTS[i], i); return; }
+          var dl = e.target.closest && e.target.closest('.hDel');
+          if(dl){ delEvent(parseInt(dl.getAttribute('data-idx'),10)); }
+        });
+        document.getElementById('hCancel').addEventListener('click', closeModal);
+        document.getElementById('hSaveBtn').addEventListener('click', saveEvent);
+        document.getElementById('histOv').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+      }
+    })();
+  })();
+  </script>
+</body>
+</html>
