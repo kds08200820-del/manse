@@ -28,10 +28,12 @@ alter table public.archive_docs enable row level security;
 drop policy if exists "ad_read" on public.archive_docs;
 create policy "ad_read" on public.archive_docs for select to authenticated using ( public.is_officer() );
 
--- 추가/수정/삭제: 관리자(최고관리자 또는 회장)
+-- 추가: 임원 누구나(본인 명의로) · 수정/삭제: 올린 본인 또는 관리자
 drop policy if exists "ad_insert" on public.archive_docs;
-create policy "ad_insert" on public.archive_docs for insert to authenticated with check ( public.is_admin() );
+create policy "ad_insert" on public.archive_docs for insert to authenticated with check ( public.is_officer() and uploaded_by = auth.uid() );
 drop policy if exists "ad_update" on public.archive_docs;
-create policy "ad_update" on public.archive_docs for update to authenticated using ( public.is_admin() ) with check ( public.is_admin() );
+create policy "ad_update" on public.archive_docs for update to authenticated
+  using ( uploaded_by = auth.uid() or public.is_admin() )
+  with check ( uploaded_by = auth.uid() or public.is_admin() );
 drop policy if exists "ad_delete" on public.archive_docs;
-create policy "ad_delete" on public.archive_docs for delete to authenticated using ( public.is_admin() );
+create policy "ad_delete" on public.archive_docs for delete to authenticated using ( uploaded_by = auth.uid() or public.is_admin() );
