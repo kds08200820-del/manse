@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
-    :root{--primary:#1c69d4;--primary-active:#0653b6;--ink:#262626;--bodytext:#3c3c3c;--muted:#6b6b6b;
-      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f7f7f7;--surface-card:#fafafa;--dark:#1a2129;--error:#dc2626;}
+    :root{--primary:#b1965f;--primary-active:#96794a;--ink:#262626;--bodytext:#3c3c3c;--muted:#6b6b6b;
+      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f7f7f7;--surface-card:#fafafa;--dark:#2b2a3a;--error:#dc2626;}
     *{box-sizing:border-box;}
     body{margin:0;background:var(--surface-soft);color:var(--bodytext);font-weight:300;
       font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;}
@@ -29,13 +29,13 @@
     .fld label{display:block;font-size:13px;font-weight:700;letter-spacing:0.3px;color:var(--ink);margin-bottom:6px;}
     .fld input, .fld textarea{width:100%;padding:12px 14px;border:1px solid var(--hairline);background:var(--surface-soft);
       font-size:15px;font-family:inherit;font-weight:300;border-radius:11px;color:var(--ink);transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;}
-    .fld input:focus, .fld textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(28,105,212,0.13);}
+    .fld input:focus, .fld textarea:focus{outline:none;border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(177,150,95,0.13);}
     .fld textarea{min-height:72px;resize:vertical;line-height:1.6;}
     .fld .hint{font-size:12px;color:var(--muted);margin-top:5px;}
     .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
     .drop{border:2px dashed var(--hairline-strong);border-radius:14px;background:var(--surface-soft);padding:30px 20px;text-align:center;
       cursor:pointer;transition:border-color .15s ease,background .15s ease;}
-    .drop.over{border-color:var(--primary);background:#eef5ff;}
+    .drop.over{border-color:var(--primary);background:#f7f1e6;}
     .drop .big{font-size:15px;font-weight:700;color:var(--ink);}
     .drop .small{font-size:12px;color:var(--muted);margin-top:5px;}
     .drop u{color:var(--primary);}
@@ -67,7 +67,7 @@
     .post .nocover{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:var(--surface-card);color:var(--hairline-strong);font-size:40px;}
     .post .cnt{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.55);color:#fff;font-size:12px;font-weight:700;padding:4px 9px;border-radius:20px;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);}
     .post .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
-    .post .ev{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;color:var(--primary);background:#eaf3ff;border:1px solid #b9d6ff;padding:3px 8px;}
+    .post .ev{display:inline-block;align-self:flex-start;font-size:11px;font-weight:700;color:var(--primary);background:#f7f1e6;border:1px solid #e0cfa8;padding:3px 8px;}
     .post .pt{font-size:17px;font-weight:700;color:var(--ink);line-height:1.35;}
     .post .mt{font-size:13px;color:var(--muted);}
     .post .st{margin-top:auto;display:flex;gap:14px;font-size:13px;color:var(--muted);padding-top:6px;border-top:1px solid var(--hairline);}
@@ -101,7 +101,7 @@
     .rx{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid var(--hairline-strong);background:#fff;
       font-size:15px;cursor:pointer;font-family:inherit;transition:background .12s,border-color .12s;}
     .rx:hover{background:var(--surface-soft);}
-    .rx.on{background:#eaf3ff;border-color:var(--primary);color:var(--primary);font-weight:700;}
+    .rx.on{background:#f7f1e6;border-color:var(--primary);color:var(--primary);font-weight:700;}
     .rx .c{font-size:13px;color:var(--muted);}
     .rx.on .c{color:var(--primary);}
     .cmts{margin-top:22px;}
@@ -428,7 +428,7 @@
       document.getElementById('detailModal').innerHTML =
         '<div class="mhead">'+
           '<button class="mclose" id="dClose" aria-label="닫기">×</button>'+
-          (p.event_name?'<span class="ev" style="display:inline-block;margin-bottom:8px;font-size:11px;font-weight:700;color:var(--primary);background:#eaf3ff;border:1px solid #b9d6ff;padding:3px 8px;">'+esc(p.event_name)+'</span>':'')+
+          (p.event_name?'<span class="ev" style="display:inline-block;margin-bottom:8px;font-size:11px;font-weight:700;color:var(--primary);background:#f7f1e6;border:1px solid #e0cfa8;padding:3px 8px;">'+esc(p.event_name)+'</span>':'')+
           '<h2>'+esc(p.title)+'</h2>'+
           '<div class="mmeta"><span>'+esc(p.author_name||'회원')+'</span>'+(p.event_date?'<span>·</span><span>'+fmtDate(p.event_date)+'</span>':'')+'<span>·</span><span>사진 '+photos.length+'장</span></div>'+
         '</div>'+

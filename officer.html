@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
-    :root{--primary:#1c69d4;--primary-active:#0653b6;--ink:#262626;--bodytext:#3c3c3c;--muted:#6b6b6b;
-      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f7f7f7;--surface-card:#fafafa;--dark:#1a2129;--error:#dc2626;}
+    :root{--primary:#b1965f;--primary-active:#96794a;--ink:#262626;--bodytext:#3c3c3c;--muted:#6b6b6b;
+      --hairline:#e6e6e6;--hairline-strong:#cccccc;--canvas:#fff;--surface-soft:#f7f7f7;--surface-card:#fafafa;--dark:#2b2a3a;--error:#dc2626;}
     *{box-sizing:border-box;}
     body{margin:0;background:var(--surface-soft);color:var(--bodytext);font-weight:300;
       font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;}
@@ -49,7 +49,7 @@
     .btn.danger:hover{background:#fdecea;}
     .prog{margin-top:10px;font-size:13px;color:var(--muted);min-height:18px;}
     .drop{border:2px dashed var(--hairline-strong);background:var(--surface-soft);padding:30px 20px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;}
-    .drop.over{border-color:var(--primary);background:#eef5ff;}
+    .drop.over{border-color:var(--primary);background:#f7f1e6;}
     .drop .big{font-size:15px;font-weight:700;color:var(--ink);}
     .drop .small{font-size:12px;color:var(--muted);margin-top:5px;}
     .drop u{color:var(--primary);}
@@ -468,10 +468,10 @@
       return '<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+'</title>'+
         '<style>body{max-width:1040px;margin:0 auto;padding:26px 20px;background:#f4f4f2;font-family:\'Malgun Gothic\',\'맑은 고딕\',sans-serif;color:#222;line-height:1.85;}'+
         '.dw{background:#fff;padding:34px 36px;box-shadow:0 1px 6px rgba(0,0,0,.08);border-radius:6px;overflow-x:auto;}'+
-        '.dh{border-bottom:2px solid #1c69d4;padding-bottom:10px;margin-bottom:22px;}.dh h1{font-size:20px;color:#1a2129;margin:0;}.dh .s{font-size:12px;color:#8a8a8a;margin-top:4px;}'+
+        '.dh{border-bottom:2px solid #b1965f;padding-bottom:10px;margin-bottom:22px;}.dh h1{font-size:20px;color:#2b2a3a;margin:0;}.dh .s{font-size:12px;color:#8a8a8a;margin-top:4px;}'+
         'img{max-width:100%;height:auto;}table{border-collapse:collapse;width:auto;max-width:none;table-layout:auto;margin:10px 0;}td,th{border:1px solid #ccc;padding:6px 10px;white-space:nowrap;vertical-align:top;word-break:keep-all;}p{margin:8px 0;}'+
         /* 원본 문서 서식을 따르지 않고 글꼴·크기를 일괄 통일 */
-        '.doc{font-size:15px;line-height:1.85;color:#222;}.doc *{font-size:15px !important;font-family:inherit !important;}.doc h1,.doc h2,.doc h3,.doc h4,.doc h5,.doc h6{font-size:16px !important;font-weight:700;margin:16px 0 6px;color:#1a2129;}.doc td,.doc th{font-size:14px !important;}</style></head>'+
+        '.doc{font-size:15px;line-height:1.85;color:#222;}.doc *{font-size:15px !important;font-family:inherit !important;}.doc h1,.doc h2,.doc h3,.doc h4,.doc h5,.doc h6{font-size:16px !important;font-weight:700;margin:16px 0 6px;color:#2b2a3a;}.doc td,.doc th{font-size:14px !important;}</style></head>'+
         '<body><div class="dw"><div class="dh"><h1>'+esc(title)+'</h1><div class="s">3·1운동만세운동본부 기록물 · 업로드 변환본</div></div><div class="doc">'+inner+'</div></div></body></html>';
     }
     async function convertFile(file){
