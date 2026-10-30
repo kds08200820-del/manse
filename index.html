@@ -14,7 +14,7 @@
 
   <!-- 스마트폰 홈 화면 앱 설치 (PWA) -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#b1965f" />
+  <meta name="theme-color" content="#202e29" />
   <link rel="icon" type="image/png" href="assets/app-icon.png?v=4" />
   <link rel="apple-touch-icon" href="assets/app-icon.png?v=4" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -354,12 +354,14 @@
     /* 기본 숨김 — 관리자일 때 JS가 adm-only 클래스를 제거해 노출 (뒤에 두어 우선 적용) */
     .adm-only{display:none !important;}
   </style>
+  <link rel="stylesheet" href="theme.css?v=20261030">
 </head>
-<body>
-<div style="width:100%;overflow-x:hidden;">
+<body class="heritage-page">
+<a class="skip-link" href="#top">본문으로 바로가기</a>
+<div class="site-shell" style="width:100%;overflow-x:clip;">
 
   <!-- ===================== GLOBAL NAV ===================== -->
-  <header style="position:sticky;top:0;z-index:60;background:var(--black);height:44px;">
+  <header class="utility-bar" style="position:sticky;top:0;z-index:60;background:var(--black);height:44px;">
     <div style="max-width:1024px;margin:0 auto;height:44px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;">
       <a href="#top" style="font-size:13px;font-weight:700;letter-spacing:0;color:rgba(255,255,255,0.92);">3·1만세운동본부</a>
       <span id="authArea" style="font-size:12px;letter-spacing:0;"></span>
@@ -367,12 +369,11 @@
   </header>
 
   <!-- ===================== SUB NAV (frosted) ===================== -->
-  <nav style="position:sticky;top:44px;z-index:55;background:rgba(245,245,247,0.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);">
+  <nav class="site-nav" aria-label="주 메뉴" style="position:sticky;top:44px;z-index:55;background:rgba(245,245,247,0.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);">
     <div style="max-width:1024px;margin:0 auto;height:52px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
-      <a href="#top" style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
-        <span style="font-size:21px;font-weight:700;letter-spacing:0;color:var(--ink);">3·1만세운동본부</span>
-      </a>
-      <div class="nav-links" style="display:flex;align-items:center;gap:6px;">
+      <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true">3·1</span><span>삼일만세운동본부</span></a>
+      <button class="nav-toggle" type="button" aria-controls="primaryNavigation" aria-expanded="false">메뉴 ☰</button>
+      <div id="primaryNavigation" class="nav-links" style="display:flex;align-items:center;gap:6px;">
         <a href="#about" style="font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink);">소개</a>
         <a href="#notices" style="font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink);">공지</a>
         <a href="#work" style="font-size:14px;font-weight:400;letter-spacing:0;color:var(--ink);">활동</a>
@@ -389,22 +390,35 @@
   </nav>
 
   <!-- ===================== HERO (네이비 오버레이) ===================== -->
-  <section id="top" class="hero2">
-    <div class="hero2-slides" id="heroSlides"></div>
+  <section id="top" class="hero2 heritage-hero" aria-labelledby="heroTitle">
     <div class="hero2-inner">
       <div class="hero2-box">
-        <div class="eyebrow on-dark">화성특례시 · 우정읍·장안면</div>
-        <h1>3·1<br>만세운동본부</h1>
-        <p class="hero2-verse">우정·장안 3·1 만세운동의 정신을 잇고,<br>그 문화와 역사의 가치를 보전합니다.</p>
-        <div style="display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="#dashboard" class="hero2-cta">한눈에 보기</a>
-          <a href="#about" class="hero2-cta" style="border-color:rgba(255,255,255,0.28);">본부 소개</a>
+        <div class="hero-location">화성특례시 · 우정읍 · 장안면</div>
+        <p class="hero-kicker">삼 일 만 세 운 동 본 부</p>
+        <h1 id="heroTitle">선조들이 걸었던<br><em>그 길 위에서</em></h1>
+        <p class="hero2-verse">우정·장안의 만세운동을 기억하고,<br>그날의 용기를 오늘의 걸음으로 이어갑니다.<br>지역과 세대가 함께, 역사의 길을 걷습니다.</p>
+        <div class="hero-actions">
+          <a href="#about" class="hero2-cta">본부 소개 <span aria-hidden="true">↗</span></a>
+          <a href="#path-2026" class="hero2-cta secondary">활동 기록 보기 <span aria-hidden="true">→</span></a>
         </div>
-        <div style="margin-top:28px;" class="eyebrow on-dark">연락 · 사무국 010-4271-5090</div>
+        <div class="hero-footnote">기억을 잇는 사람들, 함께 만드는 내일</div>
       </div>
+      <figure class="heritage-visual">
+        <div class="hero-photo-frame">
+          <div class="hero2-slides" id="heroSlides" role="img" aria-label="만세운동본부의 지역 역사 탐방과 활동 사진"></div>
+          <div class="photo-label"><small>REMEMBER THE PAST. WALK TOGETHER.</small>기억을 잇고, 오늘을 걷다</div>
+        </div>
+        <div class="hero-seal" aria-label="1919년 삼일운동"><span>기억의 시작</span><b>1919</b><span>3·1 MOVEMENT</span></div>
+        <figcaption>우정·장안에서 이어가는 3·1 만세운동의 정신</figcaption>
+        <button class="hero-manage" id="heroManageBtn" type="button">사진 관리</button>
+      </figure>
     </div>
-    <button class="hero-manage" id="heroManageBtn" type="button">🖼 사진 관리</button>
   </section>
+  <div class="heritage-values" aria-label="만세운동본부의 가치">
+    <a class="value-link" href="history.html"><span class="value-num">01</span><div><h2>역사를 기억하다</h2><p>우리 지역 독립운동의 발자취를 찾아갑니다.</p></div><span class="value-arrow" aria-hidden="true">↗</span></a>
+    <a class="value-link" href="march.html#events"><span class="value-num">02</span><div><h2>함께 걷다</h2><p>이웃과 함께 만세길의 의미를 나눕니다.</p></div><span class="value-arrow" aria-hidden="true">↗</span></a>
+    <a class="value-link" href="#work"><span class="value-num">03</span><div><h2>정신을 계승하다</h2><p>다음 세대에게 용기와 연대의 가치를 전합니다.</p></div><span class="value-arrow" aria-hidden="true">↗</span></a>
+  </div>
 
   <!-- 히어로 사진 관리 모달 (관리자) -->
   <div class="hm-overlay" id="heroModal">
@@ -1719,7 +1733,7 @@ if ('serviceWorker' in navigator) {
 <script>
 (function(){
   var el=document.getElementById('heroSlides'); if(!el) return;
-  var DEFAULTS=['assets/img/hero.webp','assets/img/g1.webp','assets/img/g2.webp','assets/img/g4.webp'];
+  var DEFAULTS=['assets/img/g4.webp','assets/img/g2.webp','assets/img/hero.webp','assets/img/g1.webp'];
   var HERO=[], timer=null, idx=0, isAdminU=false, me=null;
   function hmEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]);}); }
   function urls(){ return HERO.length ? HERO.map(function(h){return h.url;}) : DEFAULTS; }
@@ -1729,7 +1743,7 @@ if ('serviceWorker' in navigator) {
     list.forEach(function(src,i){ var d=document.createElement('div'); d.className='hero2-slide'+(i===0?' on':''); d.style.backgroundImage="url('"+String(src).replace(/'/g,'%27')+"')"; el.appendChild(d); });
     idx=0; if(timer){ clearInterval(timer); timer=null; }
     var slides=el.querySelectorAll('.hero2-slide');
-    if(slides.length>1){ timer=setInterval(function(){ slides[idx].classList.remove('on'); idx=(idx+1)%slides.length; slides[idx].classList.add('on'); }, 5500); }
+    if(slides.length>1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){ timer=setInterval(function(){ slides[idx].classList.remove('on'); idx=(idx+1)%slides.length; slides[idx].classList.add('on'); }, 5500); }
   }
   async function loadHero(){ if(!window.sb) return;
     try{ var r=await window.sb.from('hero_images').select('*').order('sort',{ascending:true}); if(!r.error && r.data) HERO=r.data; }catch(_){}
@@ -1878,5 +1892,6 @@ if ('serviceWorker' in navigator) {
   })();
 })();
 </script>
+<script src="theme.js?v=20261030" defer></script>
 </body>
 </html>

@@ -6,11 +6,21 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#b1965f",
+  "background_color": "#fffefa",
+  "theme_color": "#202e29",
   "lang": "ko",
   "icons": [
-    { "src": "assets/app-icon.png?v=4", "sizes": "1254x1254", "type": "image/png", "purpose": "any" },
-    { "src": "assets/app-icon.png?v=4", "sizes": "1254x1254", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "assets/app-icon.png?v=4",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/app-icon.png?v=4",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
